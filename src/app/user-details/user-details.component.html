@@ -1,0 +1,20 @@
+<div *ngIf="loading" class="loading-container">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+
+<div *ngIf="user" class="user-details-card">
+  <p-card>
+    <ng-template pTemplate="header">
+      <img [src]="user.avatar" alt="User Avatar" class="avatar">
+    </ng-template>
+    <ng-template pTemplate="title">
+      {{ user.first_name }} {{ user.last_name }}
+    </ng-template>
+    <ng-template pTemplate="content">
+      <p><strong>Email:</strong> {{ user.email }}</p>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <button pButton label="Back" (click)="goBack()"></button>
+    </ng-template>
+  </p-card>
+</div>

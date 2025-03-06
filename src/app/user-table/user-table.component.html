@@ -1,0 +1,52 @@
+<!-- Page Header -->
+<h1 class="page-header">Users List</h1>
+
+
+<div class="search-container">
+  <input
+    [(ngModel)]="searchId"
+    (input)="onSearchChange()"
+    placeholder="Search user by ID..."
+  />
+  <span *ngIf="searchError" class="error-message">{{ searchError }}</span>
+</div>
+
+<!-- Centered Table Container -->
+<div class="table-container">
+  <!-- Show the table if no user is selected -->
+  <div *ngIf="!selectedUser">
+    <p-table
+      [value]="users"
+      [paginator]="true"
+      [first]="first"
+      [rows]="pageSize"
+      [lazy]="true"
+      [loading]="loading"
+      [totalRecords]="totalRecords"
+      (onLazyLoad)="loadUsersLazy($event)"
+      responsiveLayout="scroll"
+      class="users-table"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Avatar</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{ user.id }}</td>
+          <td><img [src]="user.avatar" alt="Avatar" width="50" height="50"></td>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button pButton label="View" [routerLink]="['/user', user.id]"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
