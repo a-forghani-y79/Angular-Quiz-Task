@@ -5,7 +5,7 @@ import {TableLazyLoadEvent, TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import {Router, RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
+import {NgIf, NgOptimizedImage} from '@angular/common';
 import {debounceTime, distinctUntilChanged, Subject} from 'rxjs';
 
 @Component({
@@ -13,7 +13,7 @@ import {debounceTime, distinctUntilChanged, Subject} from 'rxjs';
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.css'],
   standalone: true,
-  imports: [TableModule, ButtonModule, FormsModule, NgIf, RouterLink]
+  imports: [TableModule, ButtonModule, FormsModule, NgIf, RouterLink, NgOptimizedImage]
 })
 export class UserTableComponent implements OnInit{
   users: User[] = [];
@@ -35,7 +35,7 @@ export class UserTableComponent implements OnInit{
   ngOnInit() {
     this.loadUsers();
     this.searchSubject.pipe(
-      debounceTime(1000),
+      debounceTime(700),
       distinctUntilChanged()
     ).subscribe(id => {
       this.performSearch(id);

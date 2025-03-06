@@ -5,7 +5,7 @@
 <div *ngIf="user" class="user-details-card">
   <p-card>
     <ng-template pTemplate="header">
-      <img [src]="user.avatar" alt="User Avatar" class="avatar">
+      <img ngSrc="{{user.avatar}}" alt="User Avatar" class="avatar" height="200" width="200">
     </ng-template>
     <ng-template pTemplate="title">
       {{ user.first_name }} {{ user.last_name }}
